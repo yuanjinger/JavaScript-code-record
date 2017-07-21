@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		h1{
+			text-align: center;
+		}
+		li{
+			list-style: none;
+			width: 100px;
+			height: 100px;
+			margin: 20px;
+			border: 1px solid #000;
+			float: left;
+		}
+		img{
+			width: 100%;
+    		height: 100%;
+    		overflow: hidden;
+		}
+		#div{
+			clear: both;
+			width: 300px;
+			height: 200px;
+			background-color: red;
+			margin: 200px;
+		}
+	</style>
+</head>
+<body>
+	<h1>拖拽图片预览</h1>
+	<ul id="ul">	
+	</ul>
+	<div id="div">
+		将文件拖拽到此区域
+	</div>
+	<script>
+		window.onload=function(){
+			var aLi = document.getElementsByTagName('li');
+			var aDiv = document.getElementById('div');
+			var aUl = document.getElementById('ul');
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].index=i;
+				aLi[i].ondragstart = function(ev){
+					var ev = ev ||window.event;
+					ev.dataTransfer.setData('name',this.index);
+				
+					this.style.background = 'blue';
+				}
+				aLi[i].ondragend = function(){
+					this.style.background = 'green';
+				}
+				aLi[i].ondrag = function(){
+					console.log(1);
+				}
+			}
+			aDiv.ondragenter = function(){
+				this.innerHTML = '可以释放鼠标';
+			}
+			aDiv.ondragleave = function(){
+				this.style.background = 'red';
+			}
+			aDiv.ondragover = function(ev){
+				this.style.background = 'yellow';
+				ev.preventDefault();
+			}
+			aDiv.ondrop = function(ev){
+				ev.preventDefault();
+				
+				var file=ev.dataTransfer.files;
+				for (var i = 0; i < file.length; i++) {
+					if (file[i].type.indexOf('image')!=-1) {
+						var fd = new FileReader();
+						fd.readAsDataURL(file[i]);
+						fd.onload = function(){	//文件数据内容 	
+							var  oLi = document.createElement('li');
+							var oImg = document.createElement('img');
+						
+							oImg.style.overflow='hidden';
+							oImg.src= this.result;
+							oLi.appendChild(oImg);
+							aUl.appendChild(oLi);
+						}
+					}else{
+						alert("只能上传图片");	//文件类型
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

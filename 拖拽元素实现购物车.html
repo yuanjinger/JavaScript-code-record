@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li{
+			list-style: none;
+			width: 100px;
+			height: 30px;
+			background-color: green;
+			margin: 10px;
+		}
+		#div{
+			width: 300px;
+			height: 200px;
+			background-color: red;
+			margin: 200px;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul">
+	<li draggable="true">a</li>
+	<li draggable="true">b</li>
+	<li draggable="true">c</li>
+	</ul>
+	<div id="div">
+		将文件拖拽到此区域
+	</div>
+	<script>
+		window.onload=function(){
+			var aLi = document.getElementsByTagName('li');
+			var aDiv = document.getElementById('div');
+			var aUl = document.getElementById('ul');
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].index=i;
+				aLi[i].ondragstart = function(ev){
+					var ev = ev ||window.event;
+					ev.dataTransfer.setData('name',this.index);
+				
+					this.style.background = 'blue';
+				}
+				aLi[i].ondragend = function(){
+					this.style.background = 'green';
+				}
+				aLi[i].ondrag = function(){
+					console.log(1);
+				}
+			}
+			aDiv.ondragenter = function(){
+				this.innerHTML = '可以释放鼠标';
+			}
+			aDiv.ondragleave = function(){
+				this.style.background = 'red';
+			}
+			aDiv.ondragover = function(ev){
+				this.style.background = 'yellow';
+				ev.preventDefault();
+			}
+			aDiv.ondrop = function(ev){
+				ev.preventDefault();
+				/*var index = ev.dataTransfer.getData('name');
+				aUl.removeChild(aLi[index]);
+				for (var i = 0; i < aLi.length; i++) {
+					aLi[i].index=i;
+				}*/
+				var file=ev.dataTransfer.files;
+				for (var i = 0; i < file.length; i++) {
+					if (file[i].type.indexOf('image')!=-1) {
+						var fd = new FileReader();
+						fd.readAsDataURL(file[i]);
+						fd.onload = function(){	//文件数据内容 	
+							var  oLi = document.createElement('li');
+							var oImg = document.createElement('img');
+							oImg.style.width='100px';
+							oImg.style.height='30px';
+							oImg.src= this.result;
+							oLi.appendChild(oImg);
+							aUl.appendChild(oLi);
+						}
+					}else{
+						alert("只能上传图片");	//文件类型
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

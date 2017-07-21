@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*跨浏览器的事件处理程序*/
+		var EventUtil = {
+			addHandler: function(element,type,handler){
+				if (element.addEventListener) {
+					element.addEventListener(type,handler,false);
+				} else if(element.attachEvent){
+					element.attachEvent("on"+type,handler)
+				} else{
+					element["on"+type]=handler;
+				}
+			},
+			removeHandler: function(element,type,handler){
+				if (element.removeHandler) {
+					element.removeEventListener(type,handler,false);
+				} else if (element.detachEvent) {
+					element.detachEvent("on"+type,handler);
+				} else{
+					element["on"+type] = null;
+
+				}
+			}
+		}
+		/*跨浏览器的事件对象,再次首先使用EventUtil.getEvent()取得event对象后，然后将其传入其他的函数中*/
+		var EventUtil = {
+			addHandler: function(element,type,handler){
+				//省略的代码
+			},
+			getElement: function(event) {
+				return event ? event : window.event;
+			},
+			getTarget: function(event){
+				return event.target || event.srcElement;
+			},
+			preventDefault: function(event){
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+			},
+
+			removeHandler: function(element,type,handler){
+				//省略的代码
+			},
+			stopPropagation: function(element){
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				} else {
+					event.cancelBubble = true;
+				}
+			}
+		}
+		/*为script元素指定事件处理程序*/
+		EventUtil.addHandler(window,"load",function(){
+			var script = document.createElement("script");
+			EventUtil.addHandler(script,"load",function(event){
+				alert("script is loaded");
+			});
+			script.src= "example.js";
+			document.body.appendChild(script);
+		})
+		/*为link元素指定事件处理程序*/
+		EventUtil.addHandler(window,"load",function(){
+			var link = document.createElement("link");
+			link.type = "text/css";
+			link.rel = "stylesheet";
+			EventUtil.addHandler(link,"load",function(event){
+				alert("css is loaded");
+			});
+			link.href = "example.css";
+			document.getElementByTagName("head")[0].appendChild(link);
+		})
+	</script>
+	
+</body>
+</html>

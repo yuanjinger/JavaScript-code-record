@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹窗</title>
+	<style type="text/css">
+		.layer{
+			width: 300px;
+			padding: 20px;
+			background: #fff;
+			border: 1px solid #bbb;
+			border-radius: 3px;
+			box-shadow: 0 3px 5px #bbb;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		.layer h2{
+			font-size: 16px;
+			border-bottom: 1px solid #ddd;
+			padding-bottom: 5px;
+		}
+		.layer p{
+			font-size: 14px;
+			text-indent: 2em;
+			line-height: 1.5;
+		}
+		.layer button{
+			display: block;
+			width: 100px;
+			height: 30px;
+			line-height: 30px;
+			margin: 30px auto;
+			background: #333;
+			color: #fff;
+			border: 0;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	
+	<button id="button">点击按钮出现弹窗</button>
+	<script type="text/javascript">
+		/*组件化代码:生产——>渠道——>用户*/
+		(function(){
+			//这是一个封闭的汽车生产厂（闭包）
+			//汽车图纸（弹窗的UI结构）
+			var html= '<div class="layer">\
+							<h2>提示</h2>\
+							<p>{text}</p>\
+							<button>知道了</button>\
+						</div>';
+			//汽车生产车间（弹窗的构造函数）
+			function Layer(text){
+				//根据用户定制需求（参数设置）
+				this.text=text;
+				//开始装配汽车（初始化弹窗）
+				this.init();
+			}
+			//汽车装配程序（弹窗的初始化方法）
+			Layer.prototype.init=function(){
+				//装配汽车的主体结构（初始化弹窗的DOM结构）
+				this.initDom();
+				//装配汽车的事件系统（初始化弹窗的事件）
+				this.initEvent();
+			}
+			//装配汽车主体结构的程序（初始化弹窗的DOM结构）
+			Layer.prototype.initDom=function(){
+				var node = document.createElement("div");
+				node.innerHTML = html.replace("{text}",this.text);
+				//完成汽车主体结构（完成弹窗DOM结构的初始化）
+				this.dom=node.childNodes[0];
+			}
+			//装配汽车的事件系统的程序（初始化弹窗的事件）
+			Layer.prototype.initEvent=function(){
+				this.dom.addEventListener("click",function(event){
+					if (event.target.tagName="button") {
+						//熄火（关闭弹窗）
+						this.hide();
+					}
+				}.bind(this));
+			}
+			Layer.prototype.show = function(){
+				document.body.appendChild(this.dom);
+			}
+			Layer.prototype.hide = function(){
+				document.body.removeChild(this.dom);
+			}
+			//渠道：4s店（）
+			window.Layer=Layer;
+		})();
+		document.getElementById("button").addEventListener("click",function(){
+			//通过4S店渠道买一辆新车(创建一个弹窗实例)
+			var layer = new Layer("欢迎观看：”认识前端从一个弹窗开始，本次直播将从一个简单的典型案例说起，带你了解前端技术。");
+			//点火启动（显示弹窗）
+			layer.show();
+		});
+		
+	</script>
+</body>
+</html>
