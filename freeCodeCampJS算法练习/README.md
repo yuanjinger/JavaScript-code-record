@@ -1,13 +1,13 @@
-算法1：反转字符串
+##反转字符串##
 function reverseString(str) { 
 return str.split('').reverse().join(''); 
 }
 reverseString("hello");
-算法二：求一个数的阶乘
+##求一个数的阶乘##
 function reverseString(str) { 
 return str.split('').reverse().join('');
 }
-回文数判断
+##回文数判断##
 function palindrome(str) { 
 Return  str.replace(/[\W_]/g,'').toLowerCase() ===str.replace(/[\W_]/g,'').toLowerCase().split('').reverse().join('');}
 
@@ -20,7 +20,7 @@ return false;
 } 
 return true; 
 }
-找出句子中最长的单词
+##找出句子中最长的单词##
 function findLongestWord(str) {
 var words = str.split(' '); 
 var maxLength = 0; 
@@ -62,7 +62,7 @@ return pre>cur?pre:cur;
 reduce 方法 将数组中的每一个值与前面的被返回相加的总和(初试值为数组的第一个值或者initialValue)
 
 
-句子中的首字母转为大写
+##句子中的首字母转为大写##
 function titleCase(str) { 
 var convertToArray = str.toLowerCase().split(" "); 
 var result  =  convertToArray.map(function(val){
@@ -76,7 +76,7 @@ function  titleCase(str)  {
 return   str.toLowerCase().replace(/(?:^|\s)\S/g,function(a) { return a.toUpperCase(); }); 
 } 
 titleCase("I'm a little tea pot");
-返回数组中最大的数字
+##返回数组中最大的数字##
 基本代码解决方案：
 function largestOfFour(arr) {
   var results = [];
@@ -106,7 +106,7 @@ function largestOfFour(arr) {
   return arr.map(Function.apply.bind(Math.max, null));
 }
 
-确认字符串以目标子串结尾
+##确认字符串以目标子串结尾##
  基本代码解决方案
 function confirmEnding(str, target) {
   return str.substr(-target.length) === target;
@@ -117,7 +117,7 @@ function confirmEnding(str, target) {
 }
 confirmEnding("Bastian", "n");
 
-parseInt() 函数定义和用法
+##parseInt() 函数定义和用法##
  基本代码解决方案
 function repeatStringNumTimes(str, num) {
   var accumulatedStr = '';
@@ -144,7 +144,7 @@ function repeatStringNumTimes(str, num) {
   return num > 0 ? str.repeat(num) : '';
 }
 repeatStringNumTimes("abc", 3);
-截断字符串：如果长度超过指定的最大长度，则需要减小字符串的长度或截断长度，并添加...到最后。如果不是那么长，那么我们保持原样。
+##截断字符串：如果长度超过指定的最大长度，则需要减小字符串的长度或截断长度，并添加...到最后。如果不是那么长，那么我们保持原样。##
 
 基本代码解决方案
 function truncateString(str, num) {
@@ -166,7 +166,7 @@ function truncateString(str, num) {
   }
 }
 
-编写一个将数组（第一个参数）分成组，每组长度（第二个参数）的函数，并将其作为二维数组返回。
+##编写一个将数组（第一个参数）分成组，每组长度（第二个参数）的函数，并将其作为二维数组返回。##
 1.(['a', 'b', 'c', 'd'], 2) 预计会是 [['a', 'b'], ['c', 'd']]
 2.([0, 1, 2, 3, 4, 5], 3) 预计会是 [[0, 1, 2], [3, 4, 5]]
 3.([0, 1, 2, 3, 4, 5], 2) 预计会是 [[0, 1], [2, 3], [4, 5]]
@@ -212,7 +212,7 @@ function chunkArrayInGroups(arr, size) {
 chunkArrayInGroups(["a", "b", "c", "d"], 2);
 
 
-截取数组固定数量元素
+##截取数组固定数量元素##
 例如：slasher([1, 2, 3], 2);必须返回[3]。
 
  基本代码解决方案
@@ -230,7 +230,7 @@ function slasher(arr, howMany) {
   return arr.slice(howMany);
 }
 
-如果数组的第一个元素中的字符串包含数组的第二个元素中的字符串的所有字母，则返回true。
+##如果数组的第一个元素中的字符串包含数组的第二个元素中的字符串的所有字母，则返回true。##
 基本代码解决方案
 程序
 function mutation(arr) {
@@ -254,7 +254,7 @@ function mutation(arr) {
     });
 }
 
-从数组中删除所有的伪造值（undefined，null，NaN，0，“”）。
+##从数组中删除所有的伪造值（undefined，null，NaN，0，“”）。##
  高级代码解决方案
 function bouncer(arr) {
   return arr.filter(Boolean);
@@ -263,7 +263,7 @@ function bouncer(arr) {
 该Array.prototype.filter方法需要一个返回的函数Boolean值，其采用单个参数，并返回true用于truthy值或false用于falsy值。所以我们通过了内置的Boolean功能。
 
 
-删除数组中和参数相同的元素
+##删除数组中和参数相同的元素##
  基本代码解决方案
 function destroyer(arr) {
   var args = Array.prototype.slice.call(arguments);
@@ -285,7 +285,7 @@ function destroyer(arr) {
 }
 
 测试：destroyer([1, 2, 3, 1, 2, 3], 2, 3)should return [1, 1].
-根据参数返回一个索引
+##根据参数返回一个索引##
  
 基本代码解决方案
 function getIndexToIns(arr, num) {
@@ -314,7 +314,7 @@ getIndexToIns([1,3,4],2);
 
 测试：getIndexToIns([1,2,3,4], 1.5)should return 1
 getIndexToIns([2, 5, 10], 15)should return 3.
-写出凯撒移位密码（移动13位）解码
+##写出凯撒移位密码（移动13位）解码##
 使用String.charCodeAt（）将英文字符转换为ASCII。
 使用String.fromCharCode（）将ASCII转换为英文字符。
  基本代码解决方案
@@ -407,7 +407,7 @@ sumAll([1, 4]) should return 10.
 sumAll([4, 1]) should return 10.
 
 
-检查两个数组，并返回一个仅包含不在原始数组中的项的新数组。[1, 2, 3, 5], [1, 2, 3, 4, 5] should return [4].
+##检查两个数组，并返回一个仅包含不在原始数组中的项的新数组。[1, 2, 3, 5], [1, 2, 3, 4, 5] should return [4].##
  基本代码解决方案（必备解决方案）：
 function diffArray(arr1, arr2) {
   var newArr = [];
@@ -451,7 +451,7 @@ diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
 [1, 2, 3, 5], [1, 2, 3, 4, 5]should return [4].
 [1, "calf", 3, "piglet"], [7, "filly"] should return [1, "calf", 3, "piglet", 7, "filly"]
 
-创建一个将整数转换为罗马数字的程序。
+##创建一个将整数转换为罗马数字的程序。##
  基本代码解决方案
 var convertToRoman = function(num) {
   var decimalValue = [ 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 ];
@@ -474,7 +474,7 @@ convertToRoman(36);
 反转罗马数字数组并将其变成字符串。
 测试：convertToRoman(2) should return "II".
 convertToRoman(3) should return "III".
-array第一个参数提供一个参数，并返回一个array与传递的第二个参数object中的所有属性和值匹配的所有s Object。
+##array第一个参数提供一个参数，并返回一个array与传递的第二个参数object中的所有属性和值匹配的所有s Object。##
 基本代码解决方案
 function whatIsInAName(collection, source) {
   // "What's in a name? that which we call a rose
