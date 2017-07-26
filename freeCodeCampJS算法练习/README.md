@@ -1,14 +1,19 @@
-##反转字符串##
-function reverseString(str) { 
+#反转字符串#
+
+>function reverseString(str) { 
 return str.split('').reverse().join(''); 
 }
 reverseString("hello");
+
 ##求一个数的阶乘##
-function reverseString(str) { 
+
+>function reverseString(str) { 
 return str.split('').reverse().join('');
 }
+
 ##回文数判断##
-function palindrome(str) { 
+
+>function palindrome(str) { 
 Return  str.replace(/[\W_]/g,'').toLowerCase() ===str.replace(/[\W_]/g,'').toLowerCase().split('').reverse().join('');}
 
 function palindrome(str) { 
@@ -20,8 +25,10 @@ return false;
 } 
 return true; 
 }
+
 ##找出句子中最长的单词##
-function findLongestWord(str) {
+
+>function findLongestWord(str) {
 var words = str.split(' '); 
 var maxLength = 0; 
 for (var i = 0; i < words.length; i++) { 
@@ -63,6 +70,7 @@ return pre>cur?pre:cur;
 
 
 ##句子中的首字母转为大写##
+
 function titleCase(str) { 
 var convertToArray = str.toLowerCase().split(" "); 
 var result  =  convertToArray.map(function(val){
@@ -76,7 +84,9 @@ function  titleCase(str)  {
 return   str.toLowerCase().replace(/(?:^|\s)\S/g,function(a) { return a.toUpperCase(); }); 
 } 
 titleCase("I'm a little tea pot");
+
 ##返回数组中最大的数字##
+
 基本代码解决方案：
 function largestOfFour(arr) {
   var results = [];
@@ -107,6 +117,7 @@ function largestOfFour(arr) {
 }
 
 ##确认字符串以目标子串结尾##
+
  基本代码解决方案
 function confirmEnding(str, target) {
   return str.substr(-target.length) === target;
@@ -118,6 +129,7 @@ function confirmEnding(str, target) {
 confirmEnding("Bastian", "n");
 
 ##parseInt() 函数定义和用法##
+
  基本代码解决方案
 function repeatStringNumTimes(str, num) {
   var accumulatedStr = '';
@@ -144,6 +156,7 @@ function repeatStringNumTimes(str, num) {
   return num > 0 ? str.repeat(num) : '';
 }
 repeatStringNumTimes("abc", 3);
+
 ##截断字符串：如果长度超过指定的最大长度，则需要减小字符串的长度或截断长度，并添加...到最后。如果不是那么长，那么我们保持原样。##
 
 基本代码解决方案
@@ -167,6 +180,7 @@ function truncateString(str, num) {
 }
 
 ##编写一个将数组（第一个参数）分成组，每组长度（第二个参数）的函数，并将其作为二维数组返回。##
+
 1.(['a', 'b', 'c', 'd'], 2) 预计会是 [['a', 'b'], ['c', 'd']]
 2.([0, 1, 2, 3, 4, 5], 3) 预计会是 [[0, 1, 2], [3, 4, 5]]
 3.([0, 1, 2, 3, 4, 5], 2) 预计会是 [[0, 1], [2, 3], [4, 5]]
@@ -213,6 +227,7 @@ chunkArrayInGroups(["a", "b", "c", "d"], 2);
 
 
 ##截取数组固定数量元素##
+
 例如：slasher([1, 2, 3], 2);必须返回[3]。
 
  基本代码解决方案
@@ -231,6 +246,7 @@ function slasher(arr, howMany) {
 }
 
 ##如果数组的第一个元素中的字符串包含数组的第二个元素中的字符串的所有字母，则返回true。##
+
 基本代码解决方案
 程序
 function mutation(arr) {
@@ -264,6 +280,7 @@ function bouncer(arr) {
 
 
 ##删除数组中和参数相同的元素##
+
  基本代码解决方案
 function destroyer(arr) {
   var args = Array.prototype.slice.call(arguments);
