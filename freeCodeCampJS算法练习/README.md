@@ -1,21 +1,25 @@
-#反转字符串#
+# 算法练习
 
->function reverseString(str) { 
+##反转字符串##
+```
+function reverseString(str) { 
 return str.split('').reverse().join(''); 
 }
 reverseString("hello");
-
+```
 ##求一个数的阶乘##
-
->function reverseString(str) { 
+```
+function reverseString(str) { 
 return str.split('').reverse().join('');
 }
-
+```
 ##回文数判断##
-
->function palindrome(str) { 
+```
+function palindrome(str) { 
 Return  str.replace(/[\W_]/g,'').toLowerCase() ===str.replace(/[\W_]/g,'').toLowerCase().split('').reverse().join('');}
-
+```
+---
+```
 function palindrome(str) { 
 str = str.toLowerCase().replace(/[\W_]/g, ''); 
 for(var i = 0, len = str.length - 1; i < len/2; i++) { 
@@ -25,10 +29,11 @@ return false;
 } 
 return true; 
 }
-
+```
 ##找出句子中最长的单词##
 
->function findLongestWord(str) {
+```
+function findLongestWord(str) {
 var words = str.split(' '); 
 var maxLength = 0; 
 for (var i = 0; i < words.length; i++) { 
@@ -38,6 +43,8 @@ maxLength = words[i].length;
 } 
 return maxLength; 
 }
+```
+```
 运用 .reduce()
 function findLongestWord(s) {
   return s.split(' ')
@@ -45,7 +52,8 @@ function findLongestWord(s) {
       return Math.max(x, y.length)
     }, 0);
 }
-拓展：forEach、map和reduce
+```
+>拓展：forEach、map和reduce
 数组 arr = [1,2,3,4] 求数组的和
 forEach 实现
 var arr = [1,2,3,4],
@@ -70,7 +78,7 @@ return pre>cur?pre:cur;
 
 
 ##句子中的首字母转为大写##
-
+```
 function titleCase(str) { 
 var convertToArray = str.toLowerCase().split(" "); 
 var result  =  convertToArray.map(function(val){
@@ -84,9 +92,9 @@ function  titleCase(str)  {
 return   str.toLowerCase().replace(/(?:^|\s)\S/g,function(a) { return a.toUpperCase(); }); 
 } 
 titleCase("I'm a little tea pot");
-
+```
 ##返回数组中最大的数字##
-
+```
 基本代码解决方案：
 function largestOfFour(arr) {
   var results = [];
@@ -101,7 +109,8 @@ function largestOfFour(arr) {
   }
   return results;
 }       
-
+```
+```
 中间代码解决方案：（声明式）
 function largestOfFour(arr) {
   return arr.map(function(group){
@@ -110,27 +119,29 @@ function largestOfFour(arr) {
     });
   });
 }
-
+```
+```
 高级代码解决方案：（声明式）
 function largestOfFour(arr) {
   return arr.map(Function.apply.bind(Math.max, null));
 }
-
+```
 ##确认字符串以目标子串结尾##
-
+```
  基本代码解决方案
 function confirmEnding(str, target) {
   return str.substr(-target.length) === target;
 }
-
+```
+```
 function confirmEnding(str, target) {
   return str.substring(str.length-target.length)===target;
 }
 confirmEnding("Bastian", "n");
-
+```
 ##parseInt() 函数定义和用法##
-
- 基本代码解决方案
+```
+基本代码解决方案
 function repeatStringNumTimes(str, num) {
   var accumulatedStr = '';
   while (num > 0) {
@@ -139,7 +150,8 @@ function repeatStringNumTimes(str, num) {
   }
   return accumulatedStr;
 }
-
+```
+```
 中间代码解决方案
 function repeatStringNumTimes(str, num) {
   if(num < 0)
@@ -149,16 +161,17 @@ function repeatStringNumTimes(str, num) {
   else
     return str + repeatStringNumTimes(str, num - 1);
 }
-
+```
+```
 高级代码解决方案
 //String.prototype.repeat()返回一个新字符串，该字符串包含被连接在一起的指定数量的字符串的副本。
 function repeatStringNumTimes(str, num) {
   return num > 0 ? str.repeat(num) : '';
 }
 repeatStringNumTimes("abc", 3);
-
+```
 ##截断字符串：如果长度超过指定的最大长度，则需要减小字符串的长度或截断长度，并添加...到最后。如果不是那么长，那么我们保持原样。##
-
+```
 基本代码解决方案
 function truncateString(str, num) {
   // Clear out that junk in your trunk
@@ -170,7 +183,10 @@ function truncateString(str, num) {
     return str;
   }
 }
- 高级代码解决方案
+```
+```
+
+高级代码解决方案
 function truncateString(str, num) {
   if (str.length <= num) {
     return str;
@@ -178,13 +194,14 @@ function truncateString(str, num) {
     return str.slice(0, num > 3 ? num - 3 : num) + '...';
   }
 }
-
+```
 ##编写一个将数组（第一个参数）分成组，每组长度（第二个参数）的函数，并将其作为二维数组返回。##
-
-1.(['a', 'b', 'c', 'd'], 2) 预计会是 [['a', 'b'], ['c', 'd']]
+>1.(['a', 'b', 'c', 'd'], 2) 预计会是 [['a', 'b'], ['c', 'd']]
 2.([0, 1, 2, 3, 4, 5], 3) 预计会是 [[0, 1, 2], [3, 4, 5]]
 3.([0, 1, 2, 3, 4, 5], 2) 预计会是 [[0, 1], [2, 3], [4, 5]]
 4.([0, 1, 2, 3, 4, 5], 4) 预计会是 [[0, 1, 2, 3], [4, 5]]
+
+```
 基本代码解决方案
 function chunkArrayInGroups(arr, size) {
   var temp = [];
@@ -202,7 +219,8 @@ function chunkArrayInGroups(arr, size) {
     result.push(temp);
   return result;
 }
-
+```
+```
 中间代码解决方案
 function chunkArrayInGroups(arr, size) {
   // Break it up.
@@ -212,6 +230,8 @@ function chunkArrayInGroups(arr, size) {
   }
   return arr2;
 }
+```
+```
  高级代码解决方案
 function chunkArrayInGroups(arr, size) {
   // Break it up.
@@ -224,12 +244,11 @@ function chunkArrayInGroups(arr, size) {
   return newArr;
 }
 chunkArrayInGroups(["a", "b", "c", "d"], 2);
-
-
+```
 ##截取数组固定数量元素##
 
 例如：slasher([1, 2, 3], 2);必须返回[3]。
-
+```
  基本代码解决方案
 function slasher(arr, howMany) {
   // remove the head
@@ -238,17 +257,17 @@ function slasher(arr, howMany) {
   return arr;
 }
 slasher([1, 2, 3], 2);
-
+```
+```
 中间代码解决方案
 function slasher(arr, howMany) {
   // Return string after the amount chopped off.
   return arr.slice(howMany);
 }
-
+```
 ##如果数组的第一个元素中的字符串包含数组的第二个元素中的字符串的所有字母，则返回true。##
-
+```
 基本代码解决方案
-程序
 function mutation(arr) {
   var test = arr[1].toLowerCase();
   var target = arr[0].toLowerCase();
@@ -258,7 +277,8 @@ function mutation(arr) {
   }
   return true;
  }
-
+```
+```
 中间代码解决方案
 陈述
 function mutation(arr) {
@@ -269,18 +289,20 @@ function mutation(arr) {
         .indexOf(letter) !== -1;
     });
 }
-
+```
 ##从数组中删除所有的伪造值（undefined，null，NaN，0，“”）。##
+```
  高级代码解决方案
 function bouncer(arr) {
   return arr.filter(Boolean);
 }
+```
 代码说明：
 该Array.prototype.filter方法需要一个返回的函数Boolean值，其采用单个参数，并返回true用于truthy值或false用于falsy值。所以我们通过了内置的Boolean功能。
 
 
 ##删除数组中和参数相同的元素##
-
+```
  基本代码解决方案
 function destroyer(arr) {
   var args = Array.prototype.slice.call(arguments);
@@ -293,6 +315,8 @@ function destroyer(arr) {
   }
   return arr.filter(Boolean);
 }
+```
+```
  中间代码解决方案
 function destroyer(arr) {
   var args = Array.from(arguments).slice(1);
@@ -300,10 +324,10 @@ function destroyer(arr) {
     return !args.includes(val);
   });
 }
-
+```
 测试：destroyer([1, 2, 3, 1, 2, 3], 2, 3)should return [1, 1].
 ##根据参数返回一个索引##
- 
+```
 基本代码解决方案
 function getIndexToIns(arr, num) {
   arr.sort(function(a, b) {
@@ -315,25 +339,28 @@ function getIndexToIns(arr, num) {
   }
   return arr.length;
 }
+```
+```
  中间代码解决方案
 function getIndexToIns(arr, num) {
   arr.push(num);
   arr.sort(function(a, b){return a-b});
   return arr.indexOf(num);
 }
+```
+```
  高级代码解决方案
 由@nivrith
 function getIndexToIns(arr, num) {return arr.concat(num).sort((a,b) => a-b).indexOf(num);
 }
 getIndexToIns([1,3,4],2);
-
-
-
+```
 测试：getIndexToIns([1,2,3,4], 1.5)should return 1
 getIndexToIns([2, 5, 10], 15)should return 3.
 ##写出凯撒移位密码（移动13位）解码##
 使用String.charCodeAt（）将英文字符转换为ASCII。
 使用String.fromCharCode（）将ASCII转换为英文字符。
+```
  基本代码解决方案
 function rot13(str) {
   // 生成字符数组
@@ -354,6 +381,8 @@ function rot13(str) {
       return String.fromCharCode(x - 13);
     }).join('');  // Rejoin the array into a string
 }
+```
+```
  中间代码解决方案
 // Solution with Regular expression and Array of ASCII character codesfunction rot13(str) {
   var rotCharArray = [];
@@ -377,16 +406,18 @@ rot13("LBH QVQ VG!");
 使用if语句，我们测试查看字符串是否只包含从A到Z的大写字母。
 如果它返回true，我们使用charCodeAt()函数和rot13变换返回正确的值，否则返回初始值。
 然后我们从该rotCharArray变量返回带有字符代码的字符串。
-
+```
+```
  高级代码解决方案
 function rot13(str) { // LBH QVQ VG!
   return str.replace(/[A-Z]/g, L => String.fromCharCode((L.charCodeAt(0) % 26) + 65));
 }
-
+```
 测试：
 rot13("SERR PBQR PNZC") should decode to "FREE CODE CAMP"
 rot13("SERR CVMMN!") should decode to "FREE PIZZA!"
-求和范围内所有数字
+##求和范围内所有数字##
+```
  基本代码解决方案
 function sumAll(arr) {
     var max = Math.max(arr[0], arr[1]);
@@ -398,6 +429,8 @@ function sumAll(arr) {
   return(temp);
 }
 sumAll([1, 4]);
+```
+```
  中间代码解决方案
 function sumAll(arr) {
   // Using ES6 arrow function (one-liner)
@@ -408,6 +441,8 @@ function sumAll(arr) {
   var sum = (lastNum - firstNum + 1) * (firstNum + lastNum) / 2;
   return sum;
 }
+```
+```
  高级代码解决方案
 function sumAll(arr) {
 var sum = 0;
@@ -418,13 +453,14 @@ var sum = 0;
   return sum;
 }
 sumAll([1, 4]);
-
+```
 测试：
 sumAll([1, 4]) should return 10.
 sumAll([4, 1]) should return 10.
 
 
 ##检查两个数组，并返回一个仅包含不在原始数组中的项的新数组。[1, 2, 3, 5], [1, 2, 3, 4, 5] should return [4].##
+```
  基本代码解决方案（必备解决方案）：
 function diffArray(arr1, arr2) {
   var newArr = [];
@@ -438,13 +474,14 @@ function diffArray(arr1, arr2) {
       }
     }
   }
-  
   onlyInFirst(arr1, arr2);
   onlyInFirst(arr2, arr1);
   
   return newArr;
 }
 diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+```
+```
  中间代码解决方案（声明式解决方案）：
 function diffArray(arr1, arr2) {
   return arr1
@@ -455,6 +492,8 @@ function diffArray(arr1, arr2) {
     )
 }
 diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+```
+```
  高级代码解决方案（声明式解决方案）：
 function diffArray(arr1, arr2) {
     return arr1
@@ -467,8 +506,9 @@ diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
 测试：
 [1, 2, 3, 5], [1, 2, 3, 4, 5]should return [4].
 [1, "calf", 3, "piglet"], [7, "filly"] should return [1, "calf", 3, "piglet", 7, "filly"]
-
+```
 ##创建一个将整数转换为罗马数字的程序。##
+```
  基本代码解决方案
 var convertToRoman = function(num) {
   var decimalValue = [ 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 ];
@@ -491,7 +531,9 @@ convertToRoman(36);
 反转罗马数字数组并将其变成字符串。
 测试：convertToRoman(2) should return "II".
 convertToRoman(3) should return "III".
+```
 ##array第一个参数提供一个参数，并返回一个array与传递的第二个参数object中的所有属性和值匹配的所有s Object。##
+```
 基本代码解决方案
 function whatIsInAName(collection, source) {
   // "What's in a name? that which we call a rose
@@ -509,6 +551,8 @@ function whatIsInAName(collection, source) {
   });
 }// test here
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+```
+```
 中间代码解决方案
 function whatIsInAName(collection, source) {
   // "What's in a name? that which we call a rose
@@ -522,6 +566,8 @@ function whatIsInAName(collection, source) {
   });
 }// test here
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+```
+```
 高级代码解决方案
 function whatIsInAName(collection, source) {
   // "What's in a name? that which we call a rose
@@ -540,3 +586,4 @@ function whatIsInAName(collection, source) {
   });
 }// test here
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+```
