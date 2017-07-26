@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{margin:0;}
+		#ul1{
+			list-style: none;
+			width: 1050px;
+			margin: 100px auto 0;
+		}
+		li{
+			width: 247px;
+			list-style: none;
+			float: left;
+			margin-right: 10px;
+		}
+		li div{
+			border: 1px solid #000;
+			padding: 10px;
+			margin-top: 10px;
+		}
+		li div img{
+			width: 225px;
+			display: block;
+		}
+		p{
+			width: 225px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	</style>
+	<script src="ajax.js"></script>
+	<script>
+		window.onload=function(){
+			var oUl=document.getElementById('ul1');
+			var aLi=document.getElementsByTagName('li');
+			var aLen = aLi.length;
+			var iPage=1;
+			var flag =true;
+			getList();
+			//封装的获取内容信息的ajax方法
+			function getList(){
+				ajax('get','getpics.php','cpage='+iPage,function(data){
+				var data = JSON.parse(data);
+				//如果数据加载完
+				if (!data.length) {	
+					//后续没有数据了
+					return;
+				}
+				for (var i = 0; i < data.length; i++) {
+					var s_index=getShort();
+					var oDiv= document.createElement('div');
+					var oImg= document.createElement('img');
+					oImg.src=data[i].preview;
+					oImg.style.width=225+'px';
+					oImg.style.height=data[i].height*(225/data[i].width)+'px';
+					oDiv.appendChild(oImg);
+					var oP= document.createElement('p');
+					oP.innerHTML=data[i].title;
+					oDiv.appendChild(oP);    
+					aLi[s_index].appendChild(oDiv);
+				}
+				flag=true;
+			});
+		}
+		window.onscroll = function(){
+			var _index = getShort();
+			var oli = aLi[_index];
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			console.log('元素'+getTop(oli)+oli.offsetHeight);
+			console.log('滚动'+document.documentElement.clientHeight+scrollTop);
+			//如果当前元素的top值加上自身的高度小于可视区的高加上滚动距离
+			if (getTop(oli)+oli.offsetHeight<document.documentElement.clientHeight+scrollTop) {
+				//由于加载延迟的问题，可能造成滚动一次加载好几页，正常是一次加载一次，所以必须设置一个判断
+				if (flag) {
+					flag=false;
+					iPage++;
+					getList();
+				}
+			}
+		}
+		//获取一个元素到页面的绝对值
+		function getTop(obj){
+			var iTop = 0;
+			while(obj){
+				iTop += obj.offsetTop;
+				obj=obj.offsetParent;
+			}
+			return iTop;
+		}
+		//获取最短一列的li的索引
+		function getShort(){
+			var index=0;
+			var ih=aLi[index].offsetHeight;
+			for (var i = 1; i < aLen; i++) {
+				if (aLi[i].offsetHeight<ih) {
+					index=i;
+					ih=aLi[i].offsetHeight;
+				}
+			}
+			return index;
+		}
+	}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

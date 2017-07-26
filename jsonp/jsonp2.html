@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+    <title>ajax</title>
+    <meta name="keywords" content="" />
+    <script>
+      function fn1(data){
+        var oUl1 = document.getElementById('ul1');
+        var html='';
+        for (var i = 0; i < data.length; i++) {
+          html+='<li>'+data[i]+'</li>';
+        }
+        oUl1.innerHTML=html;
+      }
+       function fn2(data){
+        var oUl1 = document.getElementById('ul2');
+        var html='';
+        for (var i = 0; i < data.length; i++) {
+          html+='<li>'+data[i]+'</li>';
+        }
+        oUl1.innerHTML=html;
+      }
+    </script>
+<script>
+      window.onload=function(){
+        var obt1 = document.getElementById("btn1");
+        var obt2 = document.getElementById("btn2");
+        // 当点击按钮的时候载入资源文件,实现按需加载
+        obt1.onclick=function(){
+         var script = document.createElement('script');
+         script.src='getData.php?callback=fn1';
+         document.body.appendChild(script);
+        };
+        obt2.onclick=function(){
+         var script = document.createElement('script');
+         script.src='getData.php?callback=fn2';
+         document.body.appendChild(script);
+        }
+    }
+ </script> 
+</head>
+<body>
+  <input type="button" value="加载数字" id="btn1">
+ 
+  <ul id="ul1"></ul>
+   <input type="button" value="加载字母" id="btn2">
+  <ul id="ul2"></ul>
+</body>
+</html>

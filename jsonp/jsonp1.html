@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+    <title>ajax</title>
+    <meta name="keywords" content="" />
+
+</head>
+<body>
+  <input type="button" value="按钮" id="btn">
+  <script>
+    function fn(data){
+      alert(data);
+    }
+  </script>
+ <!--  <script src="2.txt"></script> -->
+<script type="text/javascript">
+   var obt = document.getElementById("btn");
+   // 当点击按钮的时候载入资源文件,实现按需加载
+   obt.onclick=function(){
+     var script = document.createElement('script');
+     script.src='2.txt';
+     document.body.appendChild(script);
+   }
+ </script> 
+</body>
+</html>
